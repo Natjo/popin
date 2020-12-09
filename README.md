@@ -20,7 +20,7 @@ Light accessible popin modules with 3 differents types:
 | ------ | ------ | ------ | ------ |
 | btn | HTMLElement | - | btn element |
 | content | string | - | html to add inside the popin |
-| type | media, window, page | window | btn element |
+| type | media, window, page | window | type of content |
 
 ## Methods & Properties
 | Methods | Description |
