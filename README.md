@@ -1,23 +1,24 @@
 
 # Popin
 
-![version](https://img.shields.io/github/manifest-json/v/Natjo/popin "vesrion") [https://github.com/Natjo/popin](https://github.com/Natjo/popin)
+![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)<br>
+[https://github.com/Natjo/popin](https://github.com/Natjo/popin){target="_blank"}
 
-Light accessible popin modules
+Light accessible popin modules with 3 differents types:
 
 - window
     - content is inserted into `.box`, height is set and scrolling is `inside` box
 - page
     - content is inserted into `.box`, height is free and scrolling is `outside` box
 - media
-    - lorem ipsum dolores
+    - img/video/iframe are inserted into `.popin`. heights are homothetic. There's no scroll
 
 
 ## Parameters
 | Parameter | Type | Default | Description |
 | ------ | ------ | ------ | ------ |
 | btn | HTMLElement | - | btn element |
-| content | string | - | html to add inside th popin |
+| content | string | - | html to add inside the popin |
 | type | media, window, page | window | btn element |
 
 ## Methods & Properties
@@ -35,21 +36,19 @@ Light accessible popin modules
 | beforeClose | - | fire before popin closed |
 
 
-
-
 ## Usage
 
 ### html
 ```html
 <button type="button" class="btn-image">See</button>
 <template>
-	<h1>Lorem</h1>
-	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Id laudantium nobis repellat facilis voluptatum alias, tempore expedita corrupti iure quae vitae ea, aspernatur quidem placeat labore voluptas reprehenderit tenetur ullam fuga adipisci facere quo molestias!</p>
+	<img src="https://picsum.photos/id/241/800/1400" alt="" loading="lazy" width="800" height="1400">
 </template>
 ```
 ### javascript
 ```javascript
 import Popin from './modules/popin/popin';
+
 const btn = document.querySelector('.btn-image');
 Popin({
 	btn: btn.target,
@@ -57,6 +56,6 @@ Popin({
 	type: 'media'
 });
 ```
-## demo
 
-[codepen](https://codepen.io)
+## Usage
+[See codepen demo](https://codepen.io/natjo/pen/jOqXEmr?editors=0110)
