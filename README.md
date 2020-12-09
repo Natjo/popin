@@ -58,5 +58,5 @@ Popin({
 });
 ```
 
-## Usage
+## Demo
 [See codepen demo](https://codepen.io/natjo/pen/jOqXEmr?editors=0110)
