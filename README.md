@@ -1,19 +1,18 @@
 
 # Popin
 
-![version](https://img.shields.io/github/manifest-json/v/Natjo/popin "vesrion")
+![version](https://img.shields.io/github/manifest-json/v/Natjo/popin "vesrion") [https://github.com/Natjo/popin](https://github.com/Natjo/popin)
 
 Light accessible popin modules
+
 - window
     - content is inserted into `.box`, height is set and scrolling is `inside` box
 - page
     - content is inserted into `.box`, height is free and scrolling is `outside` box
 - media
     - lorem ipsum dolores
-## Git
-```bash
-https://github.com/Natjo/modules
-```
+
+
 ## Parameters
 | Parameter | Type | Default | Description |
 | ------ | ------ | ------ | ------ |
