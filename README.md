@@ -1,7 +1,7 @@
 
 # Popin
 
-![version](https://img.shields.io/ore/v/1.0.0 "vesrion")
+![version](https://img.shields.io/github/manifest-json/v/Natjo/popin "vesrion")
 
 Light accessible popin modules
 - window
