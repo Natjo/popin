@@ -2,7 +2,8 @@
 # Popin
 
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)<br>
-[https://github.com/Natjo/popin](https://github.com/Natjo/popin){target="_blank"}
+
+<a href="https://github.com/Natjo/popin" target="_blank">https://github.com/Natjo/popin</a>
 
 Light accessible popin modules with 3 differents types:
 
