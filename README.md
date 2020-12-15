@@ -3,7 +3,6 @@
 
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
 
-
 Light accessible popin modules with 3 differents types:
 
 - window
