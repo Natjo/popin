@@ -109,3 +109,5 @@ const Popin = params => {
 	trap.init();
 	trap.add();
 }
+
+export default Popin;
