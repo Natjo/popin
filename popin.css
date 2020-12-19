@@ -35,7 +35,7 @@
 	}
 
 	&.close{
-		animation: popin-close .3s ease both;
+		 animation: popin-close .3s ease both;
 	}
 	
 	.box{

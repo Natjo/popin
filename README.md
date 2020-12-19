@@ -49,11 +49,12 @@ Light accessible popin modules with 3 differents types:
 import Popin from './modules/popin/popin';
 
 const btn = document.querySelector('.btn-image');
-Popin({
-	btn: btn.target,
-	content: btn.target.nextElementSibling.innerHTML,
-	type: 'media'
-});
+btn.onclick = () => {
+	Popin({
+		content: btn.nextElementSibling.innerHTML,
+		type: 'media'
+	});
+}
 ```
 
 ## Demo

@@ -1,6 +1,6 @@
 /**
  * @param content - will be insert into box popin
- * @param type - window(default) / page
+ * @param type - window(default) / page / media
  * @param closeSelector - btn-close(default)
  * @param beforeOpen
  * @param afterOpen
@@ -41,40 +41,63 @@ const Popin = params => {
 		if(!box.contains(e.target) && !btn_close.contains(e.target)) close();
 	}
 	
-	const escape = event => event.key === 'Escape' && close();
-	
-	var focusableIndex = 0; 
-	const focusables = [];
-	el.querySelectorAll('button,a').forEach(el => focusables.push(el));
- 
- 	const trapFocus = e => {
-        if(e.key === 'Tab') {
-           	if(e.preventDefault) e.preventDefault();
-           	else e.returnValue = false;
-			  	focusableIndex ++;
-			  	if(focusableIndex >= focusables.length) focusableIndex = 0;
-				focusables[focusableIndex].focus();
-        }
-    }
+	const trap = {
+		index: 0,
+		els: [],
+		isShifted: false,
+		init(){
+			el.querySelectorAll('button,a,input').forEach(el => trap.els.push(el));
+		},
+		keyup(e){
+			e.key === 'Escape' && close();
+			if(e.key === 'Shift') {
+				trap.isShifted = false;
+			}
+		},
+		keydown(e){
+			if(e.key === 'Shift') {
+				trap.isShifted = true;
+			}
+			if(e.key === 'Shift') {
+				trap.isShifted = true;
+			}
+        	if(e.key === 'Tab') {
+           		if(e.preventDefault) e.preventDefault();
+				else e.returnValue = false;
+				trap.isShifted ? trap.index -- : trap.index ++;
+				if(trap.index < 0) trap.index = trap.els.length-1;
+				if(trap.index >= trap.els.length) trap.index = 0;
+				trap.els[trap.index].focus();
+			}
+		},
+		add(){
+			btn_close.focus();
+			document.addEventListener('keydown', trap.keydown, false);
+			document.addEventListener('keyup', trap.keyup, false);
+		},
+		remove(){
+			document.removeEventListener('keydown', trap.keydown);
+			document.removeEventListener('keyup', trap.keyup);
+		}
+	}
+
+	const activeEl = document.activeElement;
 
 	const close = () => {
 		window.removeEventListener(clicktouch, clickOut);
 		el.classList.add('close');
 		el.style.overflow = 'hidden';
 		document.body.classList.remove('hasPopin');
-		document.removeEventListener('keydown', trapFocus, false);
-		document.removeEventListener('keyup', escape);
+		trap.remove();
 		el.addEventListener('animationend', e => {
 			el.remove();
 			exec(params.afterClose);
-			params.btn.focus();
+			if(activeEl.type === 'button') activeEl.focus();
 		}, {once: true});
 		exec(params.beforeClose);
 	}
 	
 	btn_close.onclick = () => close();
-	
-	btn_close.focus();
 	
 	el.addEventListener('animationend', () => {
 		exec(params.afterOpen);
@@ -83,8 +106,6 @@ const Popin = params => {
 	
 	exec(params.beforeOpen);
 	
-	document.addEventListener('keydown', trapFocus, false);
-	document.addEventListener('keyup', escape);
+	trap.init();
+	trap.add();
 }
-
-export default Popin;
