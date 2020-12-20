@@ -1,51 +1,45 @@
 /**
- * @param content - will be insert into box popin
- * @param type - window(default) / page / media
- * @param closeSelector - btn-close(default)
- * @param beforeOpen
- * @param afterOpen
- * @param beforeClose
- * @param afterClose
+ * @description 
+ * Accessible popin with 3 types of displaying content
+ *
+ * @param {HTMLElement} btn button which open the popin
+ * @param {Object} params options
+ * @param {string} params.content will be insert into box popin
+ * @param {string} params.type window(default) / page / media
+ * @param {function} params.beforeOpen
+ * @param {function} params.afterOpen
+ * @param {function} params.beforeClose
+ * @param {function} params.afterClose
 */
 
-const Popin = params => {
+function Popin(btn, params = {}) {
 	const root = document.documentElement || window;
 	const clicktouch = ('ontouchstart' in root) ? "touchstart" : "click";
-	const type = params.type || "window";
-	const el = document.createElement('div');
-	el.setAttribute('role', 'dialog');
-	el.setAttribute('aria-modal', true);
-	el.className = `popin${type ? ' ' + type : '' }`;
-	let box;
-	if(type == 'media'){
-		el.innerHTML = `
-		<button class="btn-close" type="button"></button>
-		${params.content}`;
-		box = el.querySelector('img, video, iframe');
-	} 
-	else {
-		el.innerHTML = `
-		<button class="btn-close" type="button"></button>
-		<div class="box">${params.content}</div>`;
-		box = el.querySelector('.box');
+	let el;
+	if(params.content){
+		el = document.createElement('div');
+		el.setAttribute('role', 'dialog');
+		el.setAttribute('aria-modal', true);
+		el.className = `popin${params.type ? ` ${params.type}` : '' }`;
+		el.innerHTML = `<button class="btn-close" type="button"></button>
+		${params.type !== 'media' ? `<div class="box">${params.content}</div>`: params.content}`
+		document.body.appendChild(el);
+	}else{
+		el = document.getElementById(btn.getAttribute('aria-controls'));
 	}
-	document.body.appendChild(el);
-	
 	const btn_close = el.querySelector('.btn-close');
-
-	document.body.classList.add('hasPopin');
-
 	const exec = func => typeof func === 'function' && func();
-	
+	const box = el.querySelector('.box,iframe,video,img');
 	const clickOut = e => {
 		if(!box.contains(e.target) && !btn_close.contains(e.target)) close();
 	}
-	
+
 	const trap = {
 		index: 0,
 		els: [],
 		isShifted: false,
 		init(){
+			trap.els = [];
 			el.querySelectorAll('button,a,input').forEach(el => trap.els.push(el));
 		},
 		keyup(e){
@@ -58,11 +52,8 @@ const Popin = params => {
 			if(e.key === 'Shift') {
 				trap.isShifted = true;
 			}
-			if(e.key === 'Shift') {
-				trap.isShifted = true;
-			}
         	if(e.key === 'Tab') {
-           		if(e.preventDefault) e.preventDefault();
+           	if(e.preventDefault) e.preventDefault();
 				else e.returnValue = false;
 				trap.isShifted ? trap.index -- : trap.index ++;
 				if(trap.index < 0) trap.index = trap.els.length-1;
@@ -70,33 +61,31 @@ const Popin = params => {
 				trap.els[trap.index].focus();
 			}
 		},
-		add(){
-			btn_close.focus();
+		start(){
+			trap.els[0].focus();
 			document.addEventListener('keydown', trap.keydown, false);
 			document.addEventListener('keyup', trap.keyup, false);
 		},
-		remove(){
+		stop(){
 			document.removeEventListener('keydown', trap.keydown);
 			document.removeEventListener('keyup', trap.keyup);
 		}
 	}
 
-	const activeEl = document.activeElement;
-
 	const close = () => {
 		window.removeEventListener(clicktouch, clickOut);
-		el.classList.add('close');
-		el.style.overflow = 'hidden';
 		document.body.classList.remove('hasPopin');
-		trap.remove();
+		el.classList.add('close');
+		trap.stop();
 		el.addEventListener('animationend', e => {
-			el.remove();
+			el.classList.remove('close');
+			el.setAttribute('aria-hidden', true);
 			exec(params.afterClose);
-			if(activeEl.type === 'button') activeEl.focus();
+			btn.focus();
 		}, {once: true});
 		exec(params.beforeClose);
 	}
-	
+
 	btn_close.onclick = () => close();
 	
 	el.addEventListener('animationend', () => {
@@ -104,10 +93,14 @@ const Popin = params => {
 		window.addEventListener(clicktouch, clickOut);
 	}, {once: true});
 	
+	document.body.classList.add('hasPopin');
 	exec(params.beforeOpen);
-	
+	el.setAttribute('aria-hidden', false);
 	trap.init();
-	trap.add();
+	trap.start();
+	
+	this.close = () => close();
 }
+
 
 export default Popin;
