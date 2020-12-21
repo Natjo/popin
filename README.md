@@ -3,20 +3,15 @@
 
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
 
-Light accessible popin with 3 differents types.  
+
+Accessible popin for content or medias.  
+There is 3 differents types of displaying: `window`, `page` and `media`
+
 If popin is in **DOM**, set id  in `aria-controls` button.  
 Set `aria-labelledby` and `aria-describedby` if exist or needed.  
 For **dynamic** popins, set `type` in arguments. Default value is `window`
 
-
-## Types
-| Type |  Description |
-| ------  | ------ |
-| window | Content is inserted into a scrollable `.box`, height is set |
-| page | Content is inserted into a free height `.box`, scrolling is `outside` box |
-| media | img/video/iframe are inserted into `.popin`. heights are homothetic. There's no scroll |
-
-
+---
 ## Params
 | Keys | Type | Default | Description |
 | ------ | ------ | ------ | ------ |
@@ -36,7 +31,7 @@ For **dynamic** popins, set `type` in arguments. Default value is `window`
 ## Usage
 
 ### type Window
-Add class `window` to the popin.  
+Add `.window` to the popin.  
 Popin with content inside `.box`, height is fixed.  
 
 ```html
@@ -57,7 +52,7 @@ Popin with content inside `.box`, height is fixed.
 ```
 
 ### type Page
-Add class `page` to the popin.  
+Add `.page` to the popin.  
 Popin with content inside `.box`, height is not fixed and scroll is outside de box.  
 
 ```html
@@ -82,9 +77,10 @@ Popin with content inside `.box`, height is not fixed and scroll is outside de b
 ```
 
 ### type Medias
-Add class `media` to the popin.  
-
+Add `.media` to the popin.  
+Medias are in `popin`, there is no `box`.
 #### Image
+The image will be resized **homothetically** end centered
 ```html
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-3">Image</button>
 <div id="dialog-3" class="popin media"
@@ -101,6 +97,7 @@ Add class `media` to the popin.
 
 #### Video
 ```html
+The ratio of the vidéo is `16/9`, you can change it in the css
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-4">Video</button>
 <div id="dialog-4" class="popin media"
     role="dialog"
@@ -116,6 +113,7 @@ Add class `media` to the popin.
 
 #### Youtube Iframe
 ```html
+The ratio of the iframe is `16/9`, you can change it in the css
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-5">Iframe</button>
 	<div id="dialog-5" class="popin media"
     role="dialog"
