@@ -2,21 +2,21 @@
  * @description 
  * Accessible popin with 3 types of displaying content
  *
- * @param {HTMLElement} btn button which open the popin
- * @param {Object} params options
- * @param {string} params.content will be insert into box popin
- * @param {string} params.type window(default) / page / media
+ * @param {Object} params
+ * @param {string} params.id - id of the popin
+ * @param {string} params.content - insert dynamically content
+ * @param {string} params.type - set type of dynamic popin window(default)/page/media
  * @param {function} params.beforeOpen
  * @param {function} params.afterOpen
  * @param {function} params.beforeClose
  * @param {function} params.afterClose
 */
 
-function Popin(btn, params = {}) {
-	const root = document.documentElement || window;
-	const clicktouch = ('ontouchstart' in root) ? "touchstart" : "click";
+function Popin(params) {
 	let el;
-	if(params.content){
+	if(params.id){	
+		el = document.getElementById(params.id);
+	}else{
 		el = document.createElement('div');
 		el.setAttribute('role', 'dialog');
 		el.setAttribute('aria-modal', true);
@@ -24,21 +24,24 @@ function Popin(btn, params = {}) {
 		el.innerHTML = `<button class="btn-close" type="button"></button>
 		${params.type !== 'media' ? `<div class="box">${params.content}</div>`: params.content}`
 		document.body.appendChild(el);
-	}else{
-		el = document.getElementById(btn.getAttribute('aria-controls'));
 	}
 	const btn_close = el.querySelector('.btn-close');
 	const exec = func => typeof func === 'function' && func();
+	
+	const root = document.documentElement || window;
+	const clicktouch = ('ontouchstart' in root) ? "touchstart" : "click";
 	const box = el.querySelector('.box,iframe,video,img');
 	const clickOut = e => {
 		if(!box.contains(e.target) && !btn_close.contains(e.target)) close();
 	}
-
+	
 	const trap = {
+		btn: null,
 		index: 0,
 		els: [],
 		isShifted: false,
 		init(){
+			trap.btn = document.activeElement;
 			trap.els = [];
 			el.querySelectorAll('button,a,input').forEach(el => trap.els.push(el));
 		},
@@ -67,6 +70,7 @@ function Popin(btn, params = {}) {
 			document.addEventListener('keyup', trap.keyup, false);
 		},
 		stop(){
+			trap.btn.focus();
 			document.removeEventListener('keydown', trap.keydown);
 			document.removeEventListener('keyup', trap.keyup);
 		}
@@ -81,7 +85,6 @@ function Popin(btn, params = {}) {
 			el.classList.remove('close');
 			el.setAttribute('aria-hidden', true);
 			exec(params.afterClose);
-			btn.focus();
 		}, {once: true});
 		exec(params.beforeClose);
 	}
@@ -92,7 +95,6 @@ function Popin(btn, params = {}) {
 		exec(params.afterOpen);
 		window.addEventListener(clicktouch, clickOut);
 	}, {once: true});
-	
 	document.body.classList.add('hasPopin');
 	exec(params.beforeOpen);
 	el.setAttribute('aria-hidden', false);
@@ -101,6 +103,7 @@ function Popin(btn, params = {}) {
 	
 	this.close = () => close();
 }
+
 
 
 export default Popin;

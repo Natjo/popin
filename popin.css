@@ -1,96 +1,105 @@
-@keyframes popin-open{
-	0%{
-		opacity: 0;
-	}
-	100%{
-		opacity: 1;
-	}
+@keyframes popin-open {
+    to {
+        opacity: 1;
+    }
 }
-@keyframes popin-close{
-	0%{
-		opacity: 1;
-	}
-	100%{
-		opacity: 0;
-	}
+@keyframes popin-close {
+    from {
+        opacity: 1;
+    }
 }
+.popin {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: var(--ctr-margin);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    visibility: hidden;
+    opacity: 0;
 
-.popin{
-	background: rgba(0,0,0,0.5);
-	position: fixed;
-	top: 0;
-	right: 0;
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	animation: popin-open .4s ease;
-	box-sizing: border-box;
-	padding: var(--ctr-margin);
-	
-	.btn-close{
-		position: fixed;
-		top: 10px;
-		right: 10px;
-	}
+    &[aria-hidden=false] {
+        clip: auto;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        overflow: visible;
+        visibility: visible;
+        animation: popin-open 0.4s ease both;
+    }
+    &.close {
+        animation: popin-close 0.3s ease both;
+    }
 
-	&.close{
-		 animation: popin-close .3s ease both;
-	}
-	
-	.box{
-		background: #fff;
-		margin: auto;
-		padding: 20px;
-	}
-	
-	&.media{
-		video{
-			width: 100%;
-			max-width: var(--ctr-width);
-			max-height: calc(var(--ctr-width) * 16 / 9);
-			margin: auto;
-			display: block;
-			background: #000;
-		}
-		iframe{
-			width: calc(100vw - 80px);
-			height: calc((100vw - 80px) * 9 / 16);
-			max-width: calc(var(--ctr-width));
-			max-height: calc(var(--ctr-width) * 9 / 16);
-			margin: auto;
-			display: block;
-			background: #000;
-		}
-		img{
-			width: auto;
-			height: auto;
-			max-width: 100%;
-			max-height: 100%;
-			margin: auto;
-			display: block;
-			background: #000;
-		}
-	}
-	
-	&.page{		
-		overflow-y: scroll;
+    .btn-close {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+    }
 
-		@media (hover: hover) and (pointer: fine) {
-			.btn-close{
-				right: 20px;
-			}
-		}
-		.box{
-			max-width: var(--ctr-width);
-		}
-	}
-	
-	&.window{
-		.box{
-			max-width: 600px;
-			max-height: 400px;
-			overflow-y: auto;
-		}
-	}
+    .box {
+        background: #fff;
+        margin: auto;
+        padding: var(--margin);
+    }
+
+    &.media {
+        video,
+        iframe,
+        img {
+            margin: auto;
+            display: block;
+            background: #000;
+        }
+        video {
+            width: 100%;
+            max-width: var(--ctr-width);
+            max-height: calc(var(--ctr-width) * 16 / 9);
+        }
+        iframe {
+            width: calc(100vw - 80px);
+            height: calc((100vw - 80px) * 9 / 16);
+            max-width: calc(var(--ctr-width));
+            max-height: calc(var(--ctr-width) * 9 / 16);
+        }
+        picture {
+            display: contents;
+        }
+        img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            display: block;
+        }
+    }
+
+    &.page {
+        overflow-y: scroll;
+
+        @media (hover: hover) and (pointer: fine) {
+            .btn-close {
+                right: 20px;
+            }
+        }
+        .box {
+            max-width: var(--ctr-width);
+        }
+    }
+
+    &.window {
+        .box {
+            max-width: 600px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    }
 }
