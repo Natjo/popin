@@ -30,6 +30,7 @@ For **dynamic** popins, set `type` in arguments. Default value is `window`
 ## Usage
 
 ### type Window
+For small content, like a message or description.
 Add `.window` to the popin.  
 Popin with content inside `.box`, height is fixed.  
 
@@ -51,6 +52,7 @@ Popin with content inside `.box`, height is fixed.
 ```
 
 ### type Page
+For big content.
 Add `.page` to the popin.  
 Popin with content inside `.box`, height is not fixed and scroll is outside de box.  
 
@@ -123,10 +125,12 @@ The ratio of the iframe is `16/9`, you can change it in the css
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/2oJEw_lTcyI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 ```
+---
 
 ### javascript
 
 #### DOM content
+Just put the id of the popin.
 ```javascript
 const btn_popins = document.querySelectorAll('button[aria-haspopup]');
 btn_popins.forEach(btn => btn.onclick = () => 
@@ -137,11 +141,13 @@ btn_popins.forEach(btn => btn.onclick = () =>
 ```
 
 #### Dynamic content
+We don't need id, because the popin will be created dynamically.  
+Put the content in `content`, and set the type. `window` is default.
 ```javascript
 const btn_ajax = document.querySelector('.btn-ajax');
 btn_ajax.onclick = btn => {
 	Popin({
-		type: 'window',
+		type: 'page',
 		content: '<h1>hello</h2>'
 	});
 };
