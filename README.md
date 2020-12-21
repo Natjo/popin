@@ -3,12 +3,10 @@
 
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
 
-Light accessible popin with 3 differents types.
-
-If popin is in DOM, set id  in `aria-controls` button.  
+Light accessible popin with 3 differents types.  
+If popin is in **DOM**, set id  in `aria-controls` button.  
 Set `aria-labelledby` and `aria-describedby` if exist or needed.  
-
-For dynamic popins, set `type` in arguments. Default value is `window`
+For **dynamic** popins, set `type` in arguments. Default value is `window`
 
 
 ## Types
@@ -153,5 +151,4 @@ btn_ajax.onclick = btn => {
 ```
 
 ## Demo
-[See codepen demo](https://codepen.io/natjo/pen/jOqXEmr?editors=0110){:target="_blank"}
-
+[See codepen demo](https://codepen.io/natjo/pen/jOqXEmr?editors=0110)
