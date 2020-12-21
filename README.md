@@ -11,7 +11,6 @@ If popin is in **DOM**, set id  in `aria-controls` button.
 Set `aria-labelledby` and `aria-describedby` if exist or needed.  
 For **dynamic** popins, set `type` in arguments. Default value is `window`
 
----
 ## Params
 | Keys | Type | Default | Description |
 | ------ | ------ | ------ | ------ |
@@ -96,8 +95,8 @@ The image will be resized **homothetically** end centered
 ```
 
 #### Video
-```html
 The ratio of the vidéo is `16/9`, you can change it in the css
+```html
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-4">Video</button>
 <div id="dialog-4" class="popin media"
     role="dialog"
@@ -112,8 +111,8 @@ The ratio of the vidéo is `16/9`, you can change it in the css
 ```
 
 #### Youtube Iframe
-```html
 The ratio of the iframe is `16/9`, you can change it in the css
+```html
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-5">Iframe</button>
 	<div id="dialog-5" class="popin media"
     role="dialog"
