@@ -125,11 +125,10 @@ The ratio of the iframe is `16/9`, you can change it in the css
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/2oJEw_lTcyI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 ```
----
 
-### javascript
+## javascript
 
-#### DOM content
+### DOM content
 Just put the id of the popin.
 ```javascript
 const btn_popins = document.querySelectorAll('button[aria-haspopup]');
@@ -140,7 +139,7 @@ btn_popins.forEach(btn => btn.onclick = () =>
 );
 ```
 
-#### Dynamic content
+### Dynamic content
 We don't need id, because the popin will be created dynamically.  
 Put the content in `content`, and set the type. `window` is default.
 ```javascript
