@@ -38,7 +38,7 @@ For small content in a `.box` with **fixed** max-height and max-width.
 > Add `.window` to the popin.  
 
 ```html
-<button type="button" aria-haspopup="dialog" aria-controls="dialog-1">open</b></button>
+<button type="button" aria-haspopup="dialog" aria-controls="dialog-1">open</button>
 <div id="dialog-1" class="popin window"
     role="dialog" 
     aria-labelledby="dialog-1-title" 
@@ -67,7 +67,7 @@ For big content in a `.box` with fixed  max-width and **free height**.
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1" >
-	<button class="btn-close" type="button"></button>
+	<button class="btn-close" type="button" aria-label="Close"></button>
 	<div class="box">
 		<h1 id="dialog-2-title">Lorem</h1>
 		<div class="rte" id="dialog-2-desc">
@@ -92,7 +92,7 @@ The image will be resized **homothetically** end centered
 	aria-modal="true"
 	aria-hidden="true"
 	tabindex="-1" >
-	<button class="btn-close" type="button"></button>
+	<button class="btn-close" type="button" aria-label="Close"></button>
 	<picture>
 		<img src="https://picsum.photos/id/241/800/1400" alt="" loading="lazy" width="800" height="1400">
 	</picture>
@@ -108,7 +108,7 @@ The ratio of the vidéo is `16/9`, you can change it in the css
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1" >
-	<button class="btn-close" type="button"></button>
+	<button class="btn-close" type="button" aria-label="Close"></button>
 	<video controls>
 		<source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"type="video/webm">
 	</video>
@@ -124,7 +124,7 @@ The ratio of the iframe is `16/9`, you can change it in the css
     aria-modal="true"
     aria-hidden="true"
     tabindex="-1" >
-	<button class="btn-close" type="button"></button>
+	<button class="btn-close" type="button" aria-label="Close"></button>
 	<iframe width="560" height="315" src="https://www.youtube.com/embed/2oJEw_lTcyI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 ```
