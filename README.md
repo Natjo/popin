@@ -1,8 +1,6 @@
 
 # Popin
-
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
-
 
 Accessible popin for content and medias,with 3 differents types of displaying: `window`, `page` and `media`, see below.  
 
@@ -20,7 +18,7 @@ Default type value is `window`.
 | ------ | ------ | ------ | ------ |
 | id | string | - | id of the inline popin (DOM) |
 | content | htmlString | - | Dynamic content |
-| type | string | window | window(default) \| page \| media |
+| type | string | <small>window</small> | window<small>(default)</small> \| page \| media |
 | afterOpen | function | - | fire after popin opened |
 | beforeOpen | function  | - | fire before popin opened |
 | afterClose | function | - | fire after popin closed |
@@ -34,7 +32,7 @@ Default type value is `window`.
 ## Usage
 
 ### type Window
-For small content in a `.box` with **fixed** max-height and max-width.  
+For small content in a `.box` with **fixed max-height** and **fixed max-width**.  
 > Add `.window` to the popin.  
 
 ```html
@@ -55,7 +53,7 @@ For small content in a `.box` with **fixed** max-height and max-width.
 ```
 
 ### type Page
-For big content in a `.box` with fixed  max-width and **free height**.  
+For big content in a `.box` with **fixed max-width** and **free height**.  
 > Add `.page` to the popin. 
 
 ```html
@@ -84,7 +82,8 @@ Medias are in `popin`, there is no `box`.
 > Add `.media` to the popin.  
 
 #### Image
-The image will be resized **homothetically** end centered
+The image will be resized **homothetically** end centered.
+
 ```html
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-3">Image</button>
 <div id="dialog-3" class="popin media"
@@ -100,7 +99,8 @@ The image will be resized **homothetically** end centered
 ```
 
 #### Video
-The ratio of the vidéo is `16/9`, you can change it in the css
+The ratio of the vidéo is `16/9`, you can change it in the css.
+
 ```html
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-4">Video</button>
 <div id="dialog-4" class="popin media"
@@ -116,7 +116,8 @@ The ratio of the vidéo is `16/9`, you can change it in the css
 ```
 
 #### Youtube Iframe
-The ratio of the iframe is `16/9`, you can change it in the css
+The ratio of the iframe is `16/9`, you can change it in the css.
+
 ```html
 <button type="button" aria-haspopup="dialog" aria-controls="dialog-5">Iframe</button>
 	<div id="dialog-5" class="popin media"
