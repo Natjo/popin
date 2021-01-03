@@ -18,7 +18,7 @@ Default type value is `window`.
 | ------ | ------ | ------ | ------ |
 | id | string | - | id of the inline popin (DOM) |
 | content | htmlString | - | Dynamic content |
-| type | string | <small>window</small> | window<small>(default)</small> \| page \| media |
+| type | string | window | window(default) \| page \| media |
 | afterOpen | function | - | fire after popin opened |
 | beforeOpen | function  | - | fire before popin opened |
 | afterClose | function | - | fire after popin closed |
