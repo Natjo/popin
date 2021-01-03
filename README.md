@@ -4,38 +4,41 @@
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
 
 
-Accessible popin for content or medias.  
-There is 3 differents types of displaying: `window`, `page` and `media`
+Accessible popin for content and medias,with 3 differents types of displaying: `window`, `page` and `media`, see below.  
 
-If popin is in **DOM**, set id  in `aria-controls` button.  
-Set `aria-labelledby` and `aria-describedby` if exist or needed.  
-For **dynamic** popins, set `type` in arguments. Default value is `window`
+### Inline
+If popin is in **DOM**, set **id**  in `aria-controls` button.  
+Set `aria-labelledby` and `aria-describedby` for **title** and **description** is needed.  
 
-## Params
+### Dynamic
+Set **htmlString** in `content` parameter
+Set **htmlString** in `content` and `type` parameters. 
+Default type value is `window`.
+
+## Parameters
 | Keys | Type | Default | Description |
 | ------ | ------ | ------ | ------ |
-| id | string | - | id of the popin (DOM) |
-| content | string | - | Dynamic content |
-| type | string | window | - | type of dynamic popin window(default)/page/media |
+| id | string | - | id of the inline popin (DOM) |
+| content | htmlString | - | Dynamic content |
+| type | string | window | - | window(default)/page/media |
 | afterOpen | function | - | fire after popin opened |
 | beforeOpen | function  | - | fire before popin opened |
 | afterClose | function | - | fire after popin closed |
 | beforeClose | function | - | fire before popin closed |
 
-## Methods & Properties
+## Methods
 | Methods | Description |
 | ------ | ------ |
-| myPopin.close() | -- |
+| myPopin.close() | To close dynamically the popin |
 
 ## Usage
 
 ### type Window
-For small content, like a message or description.
-Add `.window` to the popin.  
-Popin with content inside `.box`, height is fixed.  
+For small content in a `.box` with **fixed** max-height and max-width.  
+> Add `.window` to the popin.  
 
 ```html
-<button type="button" aria-haspopup="dialog" aria-controls="dialog-1">type <b>window</b></button>
+<button type="button" aria-haspopup="dialog" aria-controls="dialog-1">open</b></button>
 <div id="dialog-1" class="popin window"
     role="dialog" 
     aria-labelledby="dialog-1-title" 
@@ -46,18 +49,17 @@ Popin with content inside `.box`, height is fixed.
 	<button class="btn-close" type="button"></button>
 	<div class="box">
 		<h1 id="dialog-1-title">Lorem</h1>
-		<p id="dialog-1-desc">Lorem ipsum dolor sit amet <button>button</button>consectetur adipisicing elit.</p>
+		<p id="dialog-1-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 	</div>
 </div>
 ```
 
 ### type Page
-For big content.
-Add `.page` to the popin.  
-Popin with content inside `.box`, height is not fixed and scroll is outside de box.  
+For big content in a `.box` with fixed  max-width and **free height**.  
+> Add `.page` to the popin. 
 
 ```html
-<button type="button" aria-haspopup="dialog" aria-controls="dialog-2">type <b>Page</b></button>
+<button type="button" aria-haspopup="dialog" aria-controls="dialog-2">open</button>
 	<div id="dialog-2" class="popin page"
     role="dialog" 
     aria-labelledby="dialog-2-title" 
@@ -78,8 +80,9 @@ Popin with content inside `.box`, height is not fixed and scroll is outside de b
 ```
 
 ### type Medias
-Add `.media` to the popin.  
 Medias are in `popin`, there is no `box`.
+> Add `.media` to the popin.  
+
 #### Image
 The image will be resized **homothetically** end centered
 ```html
