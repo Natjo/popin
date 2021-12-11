@@ -1,13 +1,13 @@
 
 # Popin
-![version](https://codepen.io/natjo/pen/LYzRKqJ?editors=0110)
+![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
 
 Accessible popin 
 
 
 ## Parameters
 | Keys | Type  | Description |
-| ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ |
 | btn_open | HTMLElement | id of the inline popin (DOM) |
 | onopen | function  | fired when opening popin |
 | onopen | function  | fired when closing popin |
@@ -73,4 +73,4 @@ for(let btn of document.querySelectorAll(".hasPopin")){
 ```
 
 ## Demo
-[See codepen demo](https://codepen.io/natjo/pen/jOqXEmr?editors=0110)
+[See codepen demo](https://codepen.io/natjo/pen/LYzRKqJ?editors=1010)
