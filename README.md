@@ -2,15 +2,15 @@
 # Popin
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
 
-Accessible popin 
+Accessible inline popin 
 
 
 ## Parameters
-| Keys | Type  | Description |
+| Keys | Type | Description |
 | ------ | ------ | ------ |
-| btn_open | HTMLElement | id of the inline popin (DOM) |
-| onopen | function  | fired when opening popin |
-| onopen | function  | fired when closing popin |
+| btn_open | HTMLElement | btn that expand the popin |
+| onopen | function | fire after popin opend |
+| onclose | function  | fire after popin closed |
 
 
 ## Usage
@@ -30,45 +30,15 @@ Accessible popin
 </div>
 ```
 
-
 ## javascript
 
 ```javascript
 import Popin from './modules/popin/popin';
 for(let btn of document.querySelectorAll(".hasPopin")){
-	Popin(btn)
-}
-```
-
-## css
-```css
-.popin{
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: none;
-	background: rgba(0,0,0,.8);
-	place-items: center;
-	padding: 40px;
-	box-sizing: border-box;
-	
-	.box{
-		background: #fff;
-		padding: 30px 20px 20px;
-		box-sizing: border-box;
-	}
-	
-	.btn-close{
-		float: right;
-		margin-top: -25px;
-		margin-right: -15px;
-	}
-	
-	&[aria-hidden="false"]{
-		display: grid;
-	}
+	Popin(btn, {
+		onopen(){},
+		onclose(){}
+	})
 }
 ```
 

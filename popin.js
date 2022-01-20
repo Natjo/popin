@@ -3,8 +3,8 @@
  * Accessible popin
  *
  * @param {HTMLElement} btn_open trigger for popin
- * @param {function} params.onopen fired when opening popin
- * @param {function} params.onclose fired when closing popin
+ * @param {function} params.onopen fire after popin opend
+ * @param {function} params.onclose fire after popin closed
  * 
 */
 
@@ -66,18 +66,23 @@ function Popin(btn_open, params = {}) {
 	};
 
 	const close = () => {
-		popin.setAttribute('aria-hidden', true);
-		btn_open.setAttribute('aria-expanded', false);
-		document.removeEventListener('keydown', keydown);
-		document.removeEventListener('keyup', keyup);
-		window.removeEventListener(clicktouch, clickOut);
-		if (typeof params.onclose === 'function') params.onclose();
-		btn_open.focus();
+		popin.classList.add('close');
+		popin.addEventListener('animationend', () => {
+			popin.classList.remove('close');
+			popin.setAttribute('aria-hidden', true);
+			btn_open.setAttribute('aria-expanded', false);
+			document.removeEventListener('keydown', keydown);
+			document.removeEventListener('keyup', keyup);
+			window.removeEventListener(clicktouch, clickOut);
+			if (typeof params.onclose === 'function') params.onclose();
+			btn_open.focus();
+		}, {once:true});
 	};
 	
 	btn_open.addEventListener('click', open);
 	btn_close.addEventListener('click', close);
 }
+
 
 
 
