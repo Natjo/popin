@@ -3,7 +3,8 @@
 ![version](https://img.shields.io/github/manifest-json/v/Natjo/popin)
 
 Accessible inline popin 
-
+Set **id**  in `aria-controls` button.  
+Set `aria-labelledby` and `aria-describedby` for **title** and **description** if needed.  
 
 ## Parameters
 | Keys | Type | Description |
