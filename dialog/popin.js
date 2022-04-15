@@ -3,7 +3,9 @@ function Popin(btn_open, params = {}) {
     const btn_close = document.querySelector('.btn-close');
     const box = popin.querySelector('.box');
     const clicktouch = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
-    const clickOut = (e) => {
+    const supported = typeof popin.showModal === 'function' ? true : false;
+
+    const clickOut = e => {
         if (!box.contains(e.target) && !btn_open.contains(e.target)) close();
     };
 
@@ -28,14 +30,12 @@ function Popin(btn_open, params = {}) {
         },
         init() {
             trap.index = 0;
-            popin
-                .querySelectorAll('button,a,input,summary')
-                .forEach((el, i) => {
-                    el.tabIndex !== null && el.tabIndex >= 0 && trap.els.push(el);
-                    el.addEventListener('focus', () => {
-                        trap.index = i;
-                    });
+            popin.querySelectorAll('button,a,input,summary').forEach((el, i) => {
+                if (el.tabIndex !== null && el.tabIndex >= 0) trap.els.push(el);
+                el.addEventListener('focus', () => {
+                    trap.index = i;
                 });
+            });
             trap.init = false;
         },
         start() {
@@ -51,8 +51,8 @@ function Popin(btn_open, params = {}) {
     };
 
     const open = () => {
-        popin.showModal();
-		document.body.classList.add('noscroll');
+        supported ? popin.showModal() : popin.classList.add('open');
+        document.body.classList.add('noscroll');
         window.addEventListener(clicktouch, clickOut);
         if (typeof params.onopen === 'function') params.onopen();
         trap.start();
@@ -61,15 +61,13 @@ function Popin(btn_open, params = {}) {
     const close = () => {
         trap.stop();
         popin.classList.add('close');
-		document.body.classList.remove('noscroll');
-        popin.addEventListener('animationend',() => {
-                popin.close();
-                popin.classList.remove('close');
-                window.removeEventListener(clicktouch, clickOut);
-                if (typeof params.onclose === 'function') params.onclose();
-            },
-            { once: true }
-        );
+        document.body.classList.remove('noscroll');
+        popin.addEventListener('animationend', () => {
+            supported ? popin.close() : popin.classList.remove('open');
+            popin.classList.remove('close');
+            window.removeEventListener(clicktouch, clickOut);
+            if (typeof params.onclose === 'function') params.onclose();
+        },{ once: true });
     };
 
     btn_open.onclick = () => open();

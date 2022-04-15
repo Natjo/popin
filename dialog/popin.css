@@ -7,8 +7,17 @@ dialog {
     background: rgba(0, 0, 0, 0.8);
     box-sizing: border-box;
     border: none;
+    padding: 20px;
 
-    &[open] {
+    // for no suport
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    
+
+    &[open],
+    &.open{
         display: grid;
         align-content: center;
         justify-items: center;
@@ -31,6 +40,7 @@ dialog {
 
     &::backdrop {
         background: none;
+        padding: 0;
     }
     .btn-close {
         float: right;
