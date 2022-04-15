@@ -46,4 +46,5 @@ for(let btn of document.querySelectorAll(".hasPopin")){
 
 ## Demo
 [See codepen demo](https://codepen.io/natjo/pen/LYzRKqJ?editors=1010)
+<br>
 <a href="https://codepen.io/natjo/pen/JjMmNVN" target="_blank">with dialog</a>
