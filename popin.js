@@ -53,6 +53,11 @@ function Popin(btn_open, params = {}) {
             isShifted = true;
         }
         e.key === 'Tab' && ontab();
+
+		if (isLastItem || isFirstItem) {
+            if (e.preventDefault) e.preventDefault();
+            else e.returnValue = false;
+        }
 	};
 
 	const open = () => {
